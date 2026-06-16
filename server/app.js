@@ -17,7 +17,16 @@ import { errorHandler, notFound } from './middleware/errorHandler.js';
 
 const app = express();
 
-app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
+  contentSecurityPolicy: {
+    directives: {
+      'default-src': ["'self'"],
+      'img-src': ["'self'", "data:", "https://upload.wikimedia.org"],
+      'connect-src': ["'self'", process.env.CLIENT_URL]
+    }
+  }
+}));
 app.use(mongoSanitize());
 
 const limiter = rateLimit({
