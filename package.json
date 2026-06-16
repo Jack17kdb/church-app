@@ -1,0 +1,12 @@
+{
+  "name": "church-management-system",
+  "version": "1.0.0",
+  "description": "Church Management System",
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
